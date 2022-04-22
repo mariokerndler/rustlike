@@ -114,35 +114,35 @@ pub fn player_input(gs: &mut State, ctx: &mut Rltk) -> RunState {
         Some(key) => match key {
             VirtualKeyCode::Left |
             VirtualKeyCode::Numpad4 |
-            VirtualKeyCode::A => try_move_player(-1, 0, &mut gs.ecs),
+            VirtualKeyCode::H => try_move_player(-1, 0, &mut gs.ecs),
 
             VirtualKeyCode::Right |
             VirtualKeyCode::Numpad6 |
-            VirtualKeyCode::D => try_move_player(1, 0, &mut gs.ecs),
+            VirtualKeyCode::L => try_move_player(1, 0, &mut gs.ecs),
 
             VirtualKeyCode::Up |
             VirtualKeyCode::Numpad8 |
-            VirtualKeyCode::W => try_move_player(0, -1, &mut gs.ecs),
+            VirtualKeyCode::K => try_move_player(0, -1, &mut gs.ecs),
 
             VirtualKeyCode::Down |
             VirtualKeyCode::Numpad2 |
-            VirtualKeyCode::S => try_move_player(0, 1, &mut gs.ecs),
+            VirtualKeyCode::J => try_move_player(0, 1, &mut gs.ecs),
 
             // Diagonals
             VirtualKeyCode::Numpad9 |
-            VirtualKeyCode::E => try_move_player(1, -1, &mut gs.ecs),
+            VirtualKeyCode::U => try_move_player(1, -1, &mut gs.ecs),
 
             VirtualKeyCode::Numpad7 |
-            VirtualKeyCode::Q => try_move_player(-1, -1, &mut gs.ecs),
+            VirtualKeyCode::Y => try_move_player(-1, -1, &mut gs.ecs),
 
             VirtualKeyCode::Numpad3 |
-            VirtualKeyCode::X => try_move_player(1, 1, &mut gs.ecs),
+            VirtualKeyCode::N => try_move_player(1, 1, &mut gs.ecs),
 
             VirtualKeyCode::Numpad1 |
-            VirtualKeyCode::Z => try_move_player(-1, 1, &mut gs.ecs),
+            VirtualKeyCode::B => try_move_player(-1, 1, &mut gs.ecs),
 
             // Skip Turn
-            VirtualKeyCode::Numpad5 => return skip_turn(&mut gs.ecs),
+            VirtualKeyCode::Numpad5 |
             VirtualKeyCode::Space => return skip_turn(&mut gs.ecs),
 
             // Level changes
@@ -155,11 +155,12 @@ pub fn player_input(gs: &mut State, ctx: &mut Rltk) -> RunState {
             // Picking up items
             VirtualKeyCode::G => get_item(&mut gs.ecs),
             VirtualKeyCode::I => return RunState::ShowInventory,
-            VirtualKeyCode::U => return RunState::ShowDropItem,
+            VirtualKeyCode::D => return RunState::ShowDropItem,
+            VirtualKeyCode::R => return RunState::ShowRemoveItem,
 
             // Save and Quit
             VirtualKeyCode::Escape => return RunState::SaveGame,
-            
+
             _ => { return RunState::AwaitingInput  }
         },
     }
